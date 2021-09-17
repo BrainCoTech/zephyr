@@ -4,6 +4,7 @@
 config HAS_GD32_HAL
 	bool
 	select HAS_CMSIS_CORE
+	depends on SOC_FAMILY_GD32
 
 if HAS_GD32_HAL
 
