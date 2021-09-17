@@ -138,6 +138,11 @@ manifest:
       path: modules/hal/libmetal
       groups:
         - hal
+    - name: hal_gigadevice
+      revision: 26d50298ecf9b0daceacab9155dfd48bcbcba896
+      path: modules/hal/gigadevice
+      groups:
+        - hal
     - name: littlefs
       path: modules/fs/littlefs
       groups:
