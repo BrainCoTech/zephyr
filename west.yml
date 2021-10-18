@@ -21,6 +21,8 @@ manifest:
   remotes:
     - name: upstream
       url-base: https://github.com/zephyrproject-rtos
+    - name: brainco
+      url-base: https://github.com/BrainCoTech
 
   #
   # Please add items below based on alphabetical order
@@ -70,6 +72,12 @@ manifest:
     - name: hal_infineon
       revision: f1fa8241f8786198ba41155413243de36ed878a5
       path: modules/hal/infineon
+      groups:
+        - hal
+    - name: hal_gigadevice
+      remote: brainco
+      revision: 10160775b76d16b5a3c26505e0e879b34e740dfe
+      path: modules/hal/gigadevice
       groups:
         - hal
     - name: hal_microchip
@@ -136,11 +144,6 @@ manifest:
     - name: libmetal
       revision: 39d049d4ae68e6f6d595fce7de1dcfc1024fb4eb
       path: modules/hal/libmetal
-      groups:
-        - hal
-    - name: hal_gigadevice
-      revision: 26d50298ecf9b0daceacab9155dfd48bcbcba896
-      path: modules/hal/gigadevice
       groups:
         - hal
     - name: littlefs
