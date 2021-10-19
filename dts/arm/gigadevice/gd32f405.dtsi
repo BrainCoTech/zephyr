@@ -1,0 +1,57 @@
+/*
+ * Copyright (c) 2021, ATL Electronics
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#include <arm/armv7-m.dtsi>
+
+/ {
+	cpus {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		cpu0: cpu@0 {
+			device_type = "cpu";
+			compatible = "arm,cortex-m4f";
+			reg = <0>;
+			#address-cells = <1>;
+			#size-cells = <1>;
+
+			mpu: mpu@e000ed90 {
+				compatible = "arm,armv7m-mpu";
+				reg = <0xe000ed90 0x40>;
+				arm,num-mpu-regions = <8>;
+			};
+		};
+	};
+
+	soc {
+		fmc: flash-controller@40023C00 {
+			compatible = "gd,gd32-flash-controller";
+			label = "FLASH_CTRL";
+			reg = <0x40023C00 0x400>;
+			peripheral-id = <6>;
+
+			#address-cells = <1>;
+			#size-cells = <1>;
+
+			flash0: flash@8000000 {
+				compatible = "soc-nv-flash";
+				label = "FLASH_0";
+			};
+		};
+
+		usart0: usart@40011000 {
+			compatible = "gd,gd32-usart";
+			reg = <0x40011000 x400>;
+			rcu-periph-clock = <0x60e>;
+			status = "disabled";
+			label = "usart_0";
+		};
+	};
+};
+
+&nvic {
+	arm,num-irq-priority-bits = <4>;
+};
