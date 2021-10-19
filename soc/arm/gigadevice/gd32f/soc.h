@@ -23,7 +23,7 @@
 #if defined(CONFIG_SOC_SERIES_GD32F403)
 #include <gd32f403.h>
 #else
-#error Library does not support the specified device.
+#include <gd32f4xx.h>
 #endif
 
 #endif /* !_ASMLANGUAGE */

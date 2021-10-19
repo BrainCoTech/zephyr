@@ -2,3 +2,5 @@
 # SPDX-License-Identifier: Apache-2.0
 
 source "soc/arm/gigadevice/gd32f/Kconfig.soc.gd32f403"
+
+source "soc/arm/gigadevice/gd32f/Kconfig.soc.gd32f405"

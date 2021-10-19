@@ -1,0 +1,22 @@
+# Copyright (c) 2021, ATL Electronics
+# SPDX-License-Identifier: Apache-2.0
+
+if SOC_SERIES_GD32F405
+
+config SOC_SERIES
+	default "gd32f"
+
+config SOC_SUB_SERIES
+	string
+	default "gd32f405"
+
+config SOC_PART_NUMBER
+	default "gd32f405vgt6" if SOC_PART_NUMBER_GD32F405VGT6
+
+config SYS_CLOCK_HW_CYCLES_PER_SEC
+	default 168000000
+
+config NUM_IRQS
+	default 82
+
+endif   # SOC_SERIES_GD32F405

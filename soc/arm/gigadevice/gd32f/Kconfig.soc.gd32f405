@@ -1,0 +1,11 @@
+# Copyright (c) 2021, ATL Electronics
+# SPDX-License-Identifier: Apache-2.0
+
+choice
+	prompt "GigaDevice GD32F405 MCU Selection"
+	depends on SOC_SERIES_GD32F405
+
+	config SOC_PART_NUMBER_GD32F405VGT6
+		bool "GD32F405VGT6"
+
+endchoice

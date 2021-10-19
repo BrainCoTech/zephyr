@@ -12,3 +12,15 @@ config SOC_SERIES_GD32F403
 	select SOC_FAMILY_GD32_ARM
 	help
 	  Enable support for GigaDevice GD32F403 MCU series
+
+config SOC_SERIES_GD32F405
+	bool "GigaDevice GD32F405 series MCU - High Performance"
+	select ARM
+	select CPU_HAS_ARM_MPU
+	select CPU_HAS_FPU
+	select CPU_CORTEX_M4
+	select CPU_CORTEX_M_HAS_SYSTICK
+	select CPU_CORTEX_M_HAS_VTOR
+	select SOC_FAMILY_GD32_ARM
+	help
+	  Enable support for GigaDevice GD32F405 MCU series
