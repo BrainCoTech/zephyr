@@ -85,6 +85,12 @@
 	pinctrl-names = "default";
 };
 
+&spi5 {
+	pinctrl-0 = <&spi5_default>;
+	pinctrl-names = "default";
+	cs-gpios = <&gpioi 8 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+};
+
 &dac {
 	status = "okay";
 	pinctrl-0 = <&dac_default>;
