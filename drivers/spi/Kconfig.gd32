@@ -1,0 +1,18 @@
+# Copyright (c) 2021 BrainCo Inc.
+# SPDX-License-Identifier: Apache-2.0
+
+menuconfig SPI_GD32
+	bool "Gigadevice GD32 SPI controller driver"
+	depends on SOC_FAMILY_GD32
+	select USE_GD32_SPI
+	help
+	  Enables Gigadevice GD32 SPI controller support.
+
+if SPI_GD32
+
+config SPI_GD32_INTERRUPT
+	bool "GD32 SPI interrupt support"
+	help
+	  Ennable GD32 SPI interrupt support.
+
+endif # SPI_GD32
