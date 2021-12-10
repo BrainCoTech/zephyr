@@ -1,0 +1,14 @@
+/*
+ * Copyright (c) 2021 Teslabs Engineering S.L.
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/ {
+	resources {
+		compatible = "test-gpio-basic-api";
+		/* bridge DAC header (JP7) pins 1 and 2 */
+		out-gpios = <&gpioa 4 0>; /* JP7 pin 1 "DAC_OUT1" */
+		in-gpios = <&gpioa 5 0>; /* JP7 pin 2 "DAC_OUT2" */
+	};
+};
