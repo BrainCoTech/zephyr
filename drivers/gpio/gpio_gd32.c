@@ -13,8 +13,10 @@
 #include "gpio_utils.h"
 
 #ifdef CONFIG_GD32_HAS_AF_PINMUX
+#ifndef CONFIG_SOC_SERIES_GD32F3X0
 /** SYSCFG DT node */
 #define SYSCFG_NODE DT_NODELABEL(syscfg)
+#endif /* !CONFIG_SOC_SERIES_GD32F3X0 */
 #else
 /** AFIO DT node */
 #define AFIO_NODE DT_NODELABEL(afio)
@@ -345,8 +347,10 @@ static int gpio_gd32_init(const struct device *port)
 	rcu_periph_clock_enable(config->rcu_periph_clock);
 
 #ifdef CONFIG_GD32_HAS_AF_PINMUX
+#ifndef CONFIG_SOC_SERIES_GD32F3X0
 	/* enable access to SYSCFG_EXTISSn registers */
 	rcu_periph_clock_enable(DT_PROP(SYSCFG_NODE, rcu_periph_clock));
+#endif /* !CONFIG_SOC_SERIES_GD32F3X0 */
 #else
 	/* enable access to AFIO_EXTISSn registers */
 	rcu_periph_clock_enable(DT_PROP(AFIO_NODE, rcu_periph_clock));
