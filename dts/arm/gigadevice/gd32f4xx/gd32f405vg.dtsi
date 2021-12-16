@@ -9,6 +9,12 @@
 
 / {
 	soc {
+        ccm0: memory@10000000 {
+            compatible = "gd,gd32-ccm";
+            reg = <0x10000000 DT_SIZE_K(64)>;
+			zephyr,memory-region = "CCM";
+        };
+
 		flash-controller@40023c00 {
 			flash0: flash@8000000 {
 				reg = <0x08000000 DT_SIZE_K(1024)>;
@@ -18,6 +24,7 @@
 		sram1: memory@2001c000 {
 			compatible = "mmio-sram";
 			reg = <0x2001c000 DT_SIZE_K(16)>;
+			zephyr,memory-region = "SRAM1";			
 		};
 	};
 };

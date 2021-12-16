@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: Apache-2.0
+
+description: GD32 CCM (Core Coupled Memory)
+
+compatible: "gd,gd32-ccm"
+
+include: [base.yaml, mem-region.yaml]
+
+properties:
+    reg:
+      required: true
