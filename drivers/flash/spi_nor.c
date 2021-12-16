@@ -104,6 +104,12 @@ struct spi_nor_config {
 	 * This information cannot be derived from SFDP.
 	 */
 	uint8_t has_lock;
+
+	/* Optional write protect pin */
+	struct gpio_dt_spec wp;
+
+	/* Optional hold pin */
+	struct gpio_dt_spec hold;
 };
 
 /**
@@ -1131,6 +1137,29 @@ static int spi_nor_init(const struct device *dev)
 		k_sem_init(&driver_data->sem, 1, K_SEM_MAX_LIMIT);
 	}
 
+	const struct spi_nor_config *config = dev->config;
+	if (device_is_ready(config->wp.port))
+	{
+		printk("config->wp.port init");
+		err = gpio_pin_configure_dt(&config->wp, GPIO_OUTPUT_ACTIVE);
+		if (err) {
+			LOG_ERR("failed to configure WP GPIO pin (err %d)",
+				err);
+			return -EINVAL;
+		}
+		gpio_pin_set(config->wp.port, config->wp.pin, 1);
+	}
+	if (device_is_ready(config->hold.port))
+	{
+		err = gpio_pin_configure_dt(&config->hold, GPIO_OUTPUT_ACTIVE);
+		if (err) {
+			LOG_ERR("failed to configure HOLD GPIO pin (err %d)",
+				err);
+			return -EINVAL;
+		}
+		gpio_pin_set(config->hold.port, config->hold.pin, 1);
+	}	
+
 	return spi_nor_configure(dev);
 }
 
@@ -1254,6 +1283,14 @@ static const struct spi_nor_config spi_nor_config_0 = {
 	.bfp_len = sizeof(bfp_data_0) / 4,
 	.bfp = (const struct jesd216_bfp *)bfp_data_0,
 #endif /* CONFIG_SPI_NOR_SFDP_DEVICETREE */
+
+#if DT_INST_NODE_HAS_PROP(0, wp_gpios)
+	.wp = GPIO_DT_SPEC_GET(DT_DRV_INST(0), wp_gpios),
+#endif
+
+#if DT_INST_NODE_HAS_PROP(0, hold_gpios)
+	.hold = GPIO_DT_SPEC_GET(DT_DRV_INST(0), hold_gpios),
+#endif
 
 #endif /* CONFIG_SPI_NOR_SFDP_RUNTIME */
 };
