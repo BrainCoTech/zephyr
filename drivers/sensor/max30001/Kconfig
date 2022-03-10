@@ -1,0 +1,40 @@
+# Copyright 2022 BrainCo Inc.
+#
+# SPDX-License-Identifier: Apache-2.0
+
+menuconfig MAX30001
+	bool "MAX30001 Biopotential and BioZ AFE"
+	depends on SPI
+	help
+	  Enable MAX30001 Biopotential and BioZ AFE driver
+
+if MAX30001
+
+config MAX30001_TRIGGER_GLOBAL_THREAD
+	bool "Use global thread"
+	depends on GPIO
+
+config MAX30001_TRIGGER_OWN_THREAD
+	bool "Use own thread"
+	depends on GPIO
+
+config MAX30001_THREAD_PRIORITY
+	int "Thread priority"
+	depends on MAX30001_TRIGGER_OWN_THREAD
+	default 10
+	help
+	  Priority of thread used by the driver to handle interrupts.
+
+config MAX30001_THREAD_STACK_SIZE
+	int "Max30001 interrupts handler thread stack size"
+	depends on MAX30001_TRIGGER_OWN_THREAD
+	default 1024
+	help
+	  Stack size of thread used by the driver to handle interrupts.
+
+config MAX30001_LEAD_DETECTION
+	bool "MAX30001 lead on/off detection"
+	help
+	  Enable Lead on/off detection.
+
+endif # MAX30001
