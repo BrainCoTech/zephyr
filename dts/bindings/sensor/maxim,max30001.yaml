@@ -1,0 +1,61 @@
+# Copyright (c) 2022 BrainCo Inc.
+# SPDX-License-Identifier: Apache-2.0
+
+description: MAX30001 Biopentional and BioZ sensor.
+
+compatible: "maxim,max30001"
+
+include: spi-device.yaml
+
+properties:
+  intb-gpios:
+    type: phandle-array
+    required: true
+    description: INTB interrupt input
+
+  ecg-sample-rate:
+    type: int
+    required: true
+    description: |
+      ECG channel sample rate.
+        0  512sps
+        1  256sps
+        2  128sps
+    enum:
+      - 0
+      - 1
+      - 2
+
+  lead-off-imag:
+    type: int
+    required: false
+    description: |
+      DC Lead-Off Current Magnitude, nA
+        0  0nA
+        1  5nA
+        2  10nA
+        3  20nA
+        4  50nA
+        5  100nA
+    enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+
+  lead-off-vth:
+    type: int
+    required: false
+    description: |
+      DC Lead-Off Voltage Threshold, mV
+        0  300mV
+        1  400mV
+        2  450mV
+        3  500mV
+    enum:
+      - 0
+      - 1
+      - 2
+      - 3
